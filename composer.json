@@ -1,0 +1,47 @@
+{
+    "name": "hydra/socialiteprovider",
+    "description": "Teleserv OAuth2 Provider for Laravel Socialite",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Bryan Zarzuela",
+            "email": "bryan@teleserv.ph"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "laravel/socialite": "^5.29",
+        "socialiteproviders/manager": "^4.10"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.24",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SocialiteProviders\\Teleserv\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SocialiteProviders\\Teleserv\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SocialiteProviders\\Teleserv\\HydraServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        },
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}
