@@ -44,11 +44,6 @@ class Provider extends AbstractProvider
 
         return (new User)->setRaw($user)->map([
             'id' => $user['id'],
-            'name' => collect([
-                $user['first_name'] ?? null,
-                $user['middle_name'] ?? null,
-                $user['last_name'] ?? null,
-            ])->filter(fn (mixed $part): bool => is_string($part) && trim($part) !== '')->implode(' '),
             'first_name' => $user['first_name'] ?? null,
             'middle_name' => $user['middle_name'] ?? null,
             'last_name' => $user['last_name'] ?? null,

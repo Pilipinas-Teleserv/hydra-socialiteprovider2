@@ -75,8 +75,7 @@ function hydraProfile(): array
 it('maps hydra profile fields and discards avatar and roles', function () {
     $socialiteUser = mapHydraUser(hydraProfile());
 
-    expect($socialiteUser->name)->toBe('Jane Q Doe')
-        ->and($socialiteUser->first_name)->toBe('Jane')
+    expect($socialiteUser->first_name)->toBe('Jane')
         ->and($socialiteUser->middle_name)->toBe('Q')
         ->and($socialiteUser->last_name)->toBe('Doe')
         ->and($socialiteUser->email)->toBe('jane@example.test')
