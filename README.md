@@ -9,15 +9,17 @@ Authenticate Laravel 13 applications against a Hydra OAuth2 SSO server using Lar
 - A Hydra SSO instance and OAuth2 client credentials
 - A compatible local `User` model (see [User model compatibility](#user-model-compatibility))
 
-This package will not work with Laravel's default `users` table (`name` only). Prepare your User model **before** you wire up login.
+This package will not work with Laravel's default `User` model (`name` only). Prepare your User model **before** you wire up login.
 
 ## User model compatibility
 
-Integrating this package requires your application's User model and `users` table to accept Hydra profile data. On login the package writes these columns; if any are missing it throws `SocialiteProviders\Teleserv\Exceptions\IncompatibleUserModelException` and authentication does not complete.
+Integrating this package requires your application's User model to accept Hydra profile data. On login the package writes these attributes; if the model does not accept any of them it throws `SocialiteProviders\Teleserv\Exceptions\IncompatibleUserModelException` and authentication does not complete.
 
-Required columns:
+The check is on the **model**, not the table: each field must be mass-assignable (`$fillable`, or `$guarded = []`), declared as a property on the User class, or exposed through a setter. Matching database columns are still required to persist; this package does not inspect the schema at login.
 
-| Column | Purpose |
+Required attributes:
+
+| Attribute | Purpose |
 | --- | --- |
 | `first_name` | Hydra given name |
 | `middle_name` | Hydra middle name (nullable is fine) |
@@ -32,7 +34,18 @@ Also required for local auth (Laravel defaults):
 
 The default Laravel `name` column is not used. Do not rely on Hydra `avatar` or `roles` attributes; this package discards them.
 
-Example migration additions:
+Example User model (`$fillable`) and matching migration additions:
+
+```php
+protected $fillable = [
+    'first_name',
+    'middle_name',
+    'last_name',
+    'employee_code',
+    'email',
+    'password',
+];
+```
 
 ```php
 $table->string('first_name');

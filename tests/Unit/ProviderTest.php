@@ -1,7 +1,6 @@
 <?php
 
 use Laravel\Socialite\Facades\Socialite;
-use SocialiteProviders\Teleserv\Exceptions\IncompatibleUserModelException;
 use SocialiteProviders\Teleserv\HydraBase;
 use SocialiteProviders\Teleserv\Provider;
 
@@ -84,9 +83,11 @@ it('maps hydra profile fields and discards avatar and roles', function () {
         ->and($socialiteUser->roles)->toBeNull();
 });
 
-it('throws when the user table is missing hydra columns', function () {
+it('maps hydra profile without inspecting the users table', function () {
     $this->createUsersTable(['name']);
 
-    expect(fn () => mapHydraUser(hydraProfile()))
-        ->toThrow(IncompatibleUserModelException::class, 'employee_code');
+    $socialiteUser = mapHydraUser(hydraProfile());
+
+    expect($socialiteUser->first_name)->toBe('Jane')
+        ->and($socialiteUser->employee_code)->toBe('E42');
 });

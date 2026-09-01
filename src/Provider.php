@@ -40,8 +40,6 @@ class Provider extends AbstractProvider
 
     protected function mapUserToObject(array $user)
     {
-        UserRequirements::ensure();
-
         return (new User)->setRaw($user)->map([
             'id' => $user['id'],
             'first_name' => $user['first_name'] ?? null,

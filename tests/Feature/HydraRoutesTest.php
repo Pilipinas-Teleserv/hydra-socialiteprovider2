@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Event;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\User as SocialiteUser;
 use SocialiteProviders\Teleserv\Events\UserLoggedIn;
+use SocialiteProviders\Teleserv\Exceptions\IncompatibleUserModelException;
+use SocialiteProviders\Teleserv\Tests\Fixtures\IncompatibleUser;
 use SocialiteProviders\Teleserv\Tests\Fixtures\User;
 
 it('registers the named hydra routes', function () {
@@ -104,4 +106,20 @@ it('falls back to a configured redirect_to when no intended url is stored', func
 
     $this->get('/auth/teleserv/callback')
         ->assertRedirect('/home');
+});
+
+it('rejects hydra login when the user model does not accept hydra attributes', function () {
+    config(['hydra.user' => IncompatibleUser::class]);
+
+    Socialite::fake('teleserv', SocialiteUser::fake([
+        'id' => 42,
+        'first_name' => 'Jane',
+        'last_name' => 'Doe',
+        'email' => 'jane@example.test',
+    ]));
+
+    $this->withoutExceptionHandling();
+
+    expect(fn () => $this->get('/auth/teleserv/callback'))
+        ->toThrow(IncompatibleUserModelException::class, 'first_name');
 });
