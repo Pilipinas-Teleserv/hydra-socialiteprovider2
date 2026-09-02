@@ -68,6 +68,8 @@ composer require pilipinas-teleserv/hydra-socialiteprovider2
 
 The service provider is auto-discovered. You do not need to register providers, facades, or event listeners.
 
+This package is OAuth2-only. It replaces `league/oauth1-client`, so you cannot install Socialite OAuth1 providers (Twitter/X, Tumblr, and similar) in the same application.
+
 ## Configuration
 
 Add a `teleserv` entry to `config/services.php`. `base` is required and must be the origin of your Hydra SSO server.

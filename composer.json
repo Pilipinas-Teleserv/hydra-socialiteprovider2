@@ -24,7 +24,7 @@
     "require": {
         "php": "^8.4",
         "illuminate/support": "^13.0",
-        "laravel/socialite": "^5.29",
+        "laravel/socialite": "^5.31",
         "socialiteproviders/manager": "^4.10"
     },
     "require-dev": {
@@ -48,6 +48,9 @@
                 "SocialiteProviders\\Teleserv\\HydraServiceProvider"
             ]
         }
+    },
+    "replace": {
+        "league/oauth1-client": "*"
     },
     "config": {
         "allow-plugins": {
