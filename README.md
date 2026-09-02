@@ -8,7 +8,7 @@ Authenticate Laravel 13 applications against a Hydra OAuth2 SSO server using Lar
 
 ## Requirements
 
-- PHP 8.3+
+- PHP 8.4+
 - Laravel 13
 - A Hydra SSO instance and OAuth2 client credentials
 - A compatible local `User` model (see [User model compatibility](#user-model-compatibility))

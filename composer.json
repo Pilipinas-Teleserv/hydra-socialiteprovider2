@@ -22,7 +22,7 @@
         "source": "https://github.com/Pilipinas-Teleserv/hydra-socialiteprovider2"
     },
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "illuminate/support": "^13.0",
         "laravel/socialite": "^5.29",
         "socialiteproviders/manager": "^4.10"
