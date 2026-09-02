@@ -1,5 +1,9 @@
 # Teleserv OAuth2 Provider for Laravel Socialite
 
+[![Packagist](https://img.shields.io/packagist/v/pilipinas-teleserv/hydra-socialiteprovider2.svg)](https://packagist.org/packages/pilipinas-teleserv/hydra-socialiteprovider2)
+[![CI](https://github.com/Pilipinas-Teleserv/hydra-socialiteprovider2/actions/workflows/ci.yml/badge.svg)](https://github.com/Pilipinas-Teleserv/hydra-socialiteprovider2/actions/workflows/ci.yml)
+[![License](https://img.shields.io/packagist/l/pilipinas-teleserv/hydra-socialiteprovider2.svg)](LICENSE)
+
 Authenticate Laravel 13 applications against a Hydra OAuth2 SSO server using Laravel Socialite.
 
 ## Requirements
@@ -59,7 +63,7 @@ Point `config('hydra.user')` at your User class if it is not `App\Models\User`.
 ## Installation
 
 ```bash
-composer require hydra/socialiteprovider
+composer require pilipinas-teleserv/hydra-socialiteprovider2
 ```
 
 The service provider is auto-discovered. You do not need to register providers, facades, or event listeners.
